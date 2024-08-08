@@ -1,7 +1,16 @@
-import "@/styles/globals.css";
 
 import type { Metadata } from "next";
+import localFont from 'next/font/local';
 import { Alex_Brush, Albert_Sans, Unbounded } from "next/font/google";
+import "@/styles/globals.css";
+
+const theSignature = localFont({
+  src: "Thesignature.ttf",
+  // display: 'swap',
+  // style: 'normal',
+  // weight: '400',
+  variable: "--font-signature",
+});
 
 const unbounded = Unbounded({
   subsets: ["latin"],
@@ -48,9 +57,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${alex_brush.variable} ${unbounded.variable} ${albert_sans.variable}`}
+        className={`${alex_brush.variable} ${unbounded.variable} ${albert_sans.variable} ${theSignature.variable}`}
       >
-        {children}
+        <main className="relative min-h-screen bg-white font-albert-sans">{children}</main>
       </body>
     </html>
   );

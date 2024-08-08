@@ -9,9 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        hero: "url('/assets/img-hero.png')",
       },
       colors: {
         "pn-primary": "#004040",
@@ -23,6 +21,7 @@ const config: Config = {
         unbounded: "var(--font-unbounded)",
         "alex-brush": "var(--font-alex-brush)",
         "albert-sans": "var(--font-albert-sans)",
+        signature: "var(--font-signature)",
       },
     },
   },
