@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import {} from "@tanstack/eslint-plugin-query";
 import localFont from "next/font/local";
 import { Alex_Brush, Albert_Sans, Unbounded } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layouts/navbar";
+import Providers from "@/components/parts/provider";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const theSignature = localFont({
   src: "Thesignature.ttf",
@@ -59,10 +62,13 @@ export default function RootLayout({
       <body
         className={`${alex_brush.variable} ${unbounded.variable} ${albert_sans.variable} ${theSignature.variable}`}
       >
-        <main className="relative min-h-screen bg-white font-albert-sans">
-          <Navbar />
-          {children}
-        </main>
+        <Providers>
+          <main className="relative min-h-screen bg-white font-albert-sans">
+            <Navbar />
+            {children}
+          </main>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Providers>
       </body>
     </html>
   );
