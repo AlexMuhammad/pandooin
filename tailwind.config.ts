@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         hero: "url('/assets/img-hero.png')",
+        banner: "url('/assets/img-banner.jpeg')",
       },
       colors: {
         "pn-primary": "#004040",

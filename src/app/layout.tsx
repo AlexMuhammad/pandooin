@@ -1,14 +1,14 @@
-
 import type { Metadata } from "next";
-import localFont from 'next/font/local';
+import localFont from "next/font/local";
 import { Alex_Brush, Albert_Sans, Unbounded } from "next/font/google";
 import "@/styles/globals.css";
+import Navbar from "@/components/layouts/navbar";
 
 const theSignature = localFont({
   src: "Thesignature.ttf",
-  // display: 'swap',
-  // style: 'normal',
-  // weight: '400',
+  display: "swap",
+  style: "normal",
+  weight: "400",
   variable: "--font-signature",
 });
 
@@ -59,7 +59,10 @@ export default function RootLayout({
       <body
         className={`${alex_brush.variable} ${unbounded.variable} ${albert_sans.variable} ${theSignature.variable}`}
       >
-        <main className="relative min-h-screen bg-white font-albert-sans">{children}</main>
+        <main className="relative min-h-screen bg-white font-albert-sans">
+          <Navbar />
+          {children}
+        </main>
       </body>
     </html>
   );
