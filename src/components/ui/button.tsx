@@ -9,7 +9,6 @@ type ButtonProps = {
   children: React.ReactNode;
   variant?: (typeof BUTTON_VARIANT)[number];
   size?: (typeof BUTTON_SIZE)[number];
-  //   icon?: LucideIcon;
   iconClassName?: string;
 } & React.ComponentPropsWithRef<"button">;
 
@@ -20,7 +19,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant = "primary",
       size = "base",
-      //   icon: Icon,
       type = "button",
       iconClassName,
       ...rest
@@ -60,30 +58,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               "disabled:bg-primary-700",
               "focus-visible:ring-primary-400",
             ],
-            // variant === "secondary" && [
-            //   "bg-secondary-500 text-black",
-            //   "border border-secondary-600",
-            //   "hover:bg-secondary-600 hover:text-white",
-            //   "active:bg-secondary-700",
-            //   "disabled:bg-secondary-700",
-            //   "focus-visible:ring-secondary-400",
-            // ],
-
             variant === "outline" && [
               "text-white",
               "border border-gray-300",
               "hover:bg-light focus-visible:ring-primary-400 active:bg-typo-divider disabled:bg-typo-divider",
             ],
-            // variant === "ghost" && [
-            //   "text-primary-500",
-            //   "shadow-none",
-            //   "hover:bg-primary-50 focus-visible:ring-primary-400 active:bg-primary-100 disabled:bg-primary-100",
-            // ],
           ],
           className
         )}
       >
-        {/* {Icon && <Icon size="1em" className={clx(iconClassName)} />} */}
         {children}
       </button>
     );

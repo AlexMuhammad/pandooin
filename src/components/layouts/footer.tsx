@@ -4,8 +4,8 @@ import * as React from "react";
 const Footer = () => {
   return (
     <footer className="bg-pn-primary">
-      <div className="max-w-6xl mx-auto flex flex-col items-center md:items-start h-full px-[30px] md:px-0 mt-[54px]">
-        <div className="flex flex-col items-center justify-between w-full py-6">
+      <div className="max-w-6xl mx-auto h-full">
+        <div className="flex flex-col items-center justify-between w-full py-6 md:flex-row">
           <div>
             <span className="text-white mr-2">&copy;</span>
             <span className="text-white">

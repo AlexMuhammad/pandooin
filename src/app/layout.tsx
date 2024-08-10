@@ -8,7 +8,7 @@ import Providers from "@/components/parts/provider";
 import Footer from "@/components/layouts/footer";
 
 const theSignature = localFont({
-  src: "Thesignature.ttf",
+  src: "../styles/fonts/Thesignature.ttf",
   display: "swap",
   style: "normal",
   weight: "400",

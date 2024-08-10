@@ -20,6 +20,7 @@ const Home = () => {
     return (
       <>
         {productData.map((item: IProducts, index: number) => {
+          /* eslint-disable react-hooks/rules-of-hooks */
           const { src, gallery_alt_text } = useImageRotation(
             item.related_galleries
           );
