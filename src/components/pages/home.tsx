@@ -32,7 +32,7 @@ const Home = () => {
               key={index}
               className={`py-4 md:py-[72px] w-full flex flex-col gap-4 md:gap-6 items-stretch ${isReversed}`}
             >
-              <div className="relative md:w-1/2 max-h-[256px] md:max-h-[327px] aspect-video bg-red-500  h-full">
+              <div className="relative md:w-1/2 max-h-[256px] md:max-h-[327px] aspect-video h-full">
                 <Image
                   src={src}
                   layout="fill"
