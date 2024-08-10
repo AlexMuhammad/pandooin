@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import {} from "@tanstack/eslint-plugin-query";
 import localFont from "next/font/local";
 import { Alex_Brush, Albert_Sans, Unbounded } from "next/font/google";
 import "@/styles/globals.css";
