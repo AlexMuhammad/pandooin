@@ -5,6 +5,8 @@ import Link from "next/link";
 import * as React from "react";
 import Button from "../ui/button";
 import useScrollPosition from "@/hooks/useScrollPosition";
+import { NAVBAR_LINKS } from "@/constants";
+import { NavType } from "@/types/constants";
 
 const Navbar = () => {
   const isScrolled = useScrollPosition(700);
@@ -32,7 +34,7 @@ const Navbar = () => {
         />
       )}
       <nav
-        className={`fixed transition-all duration-300 w-full py-2 z-50 ${
+        className={`fixed transition-all duration-300 w-full py-2 z-[999] ${
           isScrolled ? "bg-white" : "bg-transparent"
         }`}
       >
@@ -49,7 +51,31 @@ const Navbar = () => {
               />
             </Link>
             <div className="space-x-4">
-              <Link
+              {NAVBAR_LINKS.map((item: NavType, index: number) => (
+                <Link
+                  key={index}
+                  href={item.to || ""}
+                  className={`${
+                    isScrolled ? "text-pn-primary" : "text-white"
+                  } py-6 px-4 font-semibold hover:underline`}
+                >
+                  {NAVBAR_LINKS.length === item.id ? (
+                    <Button
+                      variant="outline"
+                      className={`${
+                        isScrolled
+                          ? "text-pn-primary border-pn-primary"
+                          : "text-white border-white"
+                      } py-3 px-4 border-2`}
+                    >
+                      {item.id === 5 && item.label}
+                    </Button>
+                  ) : (
+                    item.label
+                  )}
+                </Link>
+              ))}
+              {/* <Link
                 href="#"
                 className={`${
                   isScrolled ? "text-pn-primary" : "text-white"
@@ -97,7 +123,7 @@ const Navbar = () => {
                 >
                   Need Assistance?
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -142,60 +168,31 @@ const Navbar = () => {
               </Button>
             </div>
             <div className="space-y-4 flex flex-col items-center mt-10">
-              <Link
-                href="#"
-                className={`${
-                  isScrolled ? "text-pn-primary" : "text-black"
-                } py-6 px-4 hover:underline`}
-                onClick={toggleMenu}
-              >
-                Homepage
-              </Link>
-              <Link
-                href="#"
-                className={`${
-                  isScrolled ? "text-pn-primary" : "text-black"
-                } py-6 px-4 hover:underline`}
-                onClick={toggleMenu}
-              >
-                Customize Your Trip
-              </Link>
-              <Link
-                href="#"
-                className={`${
-                  isScrolled ? "text-pn-primary" : "text-black"
-                } py-6 px-4 hover:underline`}
-                onClick={toggleMenu}
-              >
-                Services
-              </Link>
-              <Link
-                href="#"
-                className={`${
-                  isScrolled ? "text-pn-primary" : "text-black"
-                } py-6 px-4 hover:underline`}
-                onClick={toggleMenu}
-              >
-                Destination
-              </Link>
-              <Link
-                href="#"
-                className={`${
-                  isScrolled ? "text-pn-primary" : "text-black"
-                } py-6 px-4 hover:underline`}
-                onClick={toggleMenu}
-              >
-                <Button
-                  variant="outline"
+              {NAVBAR_LINKS.map((item: NavType, index: number) => (
+                <Link
+                  key={index}
+                  href={item.to || ""}
                   className={`${
-                    isScrolled
-                      ? "text-pn-primary border-pn-primary"
-                      : "text-black border-black"
-                  } py-3 px-4 border-2`}
+                    isScrolled ? "text-pn-primary" : "text-white"
+                  } py-6 px-4 font-semibold hover:underline`}
+                  onClick={toggleMenu}
                 >
-                  Need Assistance?
-                </Button>
-              </Link>
+                  {NAVBAR_LINKS.length === item.id ? (
+                    <Button
+                      variant="outline"
+                      className={`${
+                        isScrolled
+                          ? "text-pn-primary border-pn-primary"
+                          : "text-white border-white"
+                      } py-3 px-4 border-2`}
+                    >
+                      {item.id === 5 && item.label}
+                    </Button>
+                  ) : (
+                    item.label
+                  )}
+                </Link>
+              ))}
             </div>
           </div>
         </div>

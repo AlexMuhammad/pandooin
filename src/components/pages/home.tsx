@@ -4,22 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "../ui/button";
 import { useArticles, useProducts } from "@/queries";
-import { toRupiah } from "@/utils";
+import { toArticle, toRupiah } from "@/utils";
 import { useImageRotation } from "@/hooks/useImageRotation";
+import { GalleriesType, IProducts } from "@/types/product";
+import { ArticleType } from "@/types/article";
 
 const Home = () => {
   const productQuery = useProducts();
   const articleQuery = useArticles();
 
-  const { data, success } = productQuery.data;
-  const { data: articleData, success: succesArticle } = articleQuery.data;
-
-  console.log(productQuery.data);
+  const { data: productData } = productQuery.data;
+  const { data: articleData } = articleQuery.data;
 
   const renderDestinations = () => {
     return (
       <>
-        {data.map((item: any, index: any) => {
+        {productData.map((item: IProducts, index: number) => {
           const { src, gallery_alt_text } = useImageRotation(
             item.related_galleries
           );
@@ -87,7 +87,7 @@ const Home = () => {
   const renderScrollProducts = () => {
     return (
       <div className="flex snap-x snap-mandatory gap-5 w-full mx:auto overflow-scroll hide-scrollbar h-[497px]">
-        {data.map((item: any, index: any) => (
+        {productData.map((item: IProducts, index: number) => (
           <div key={index} className="relative snap-center shrink-0 space-y-5">
             <div className="relative w-[262px] h-[200px] md:w-[300px] md:h-[200px] snap-center shrink-1">
               <Image
@@ -130,25 +130,29 @@ const Home = () => {
   const renderLuxuryFootages = () => {
     return (
       <>
-        {data[0].related_galleries.slice(0, 7).map((item: any, index: any) => (
-          <div
-            key={index}
-            className={`${
-              index === 3
-                ? "col-span-full h-full w-full"
-                : "relative w-full aspect-[356/256] cursor-pointer"
-            }`}
-          >
-            <Image
-              src={`${index === 3 ? "/assets/separator-white.png" : item.src}`}
-              className="w-full"
-              width={349.33}
-              height={349.33}
-              loading="lazy"
-              alt={index === 3 ? "separator" : `image-${index}`}
-            />
-          </div>
-        ))}
+        {productData[0].related_galleries
+          .slice(0, 7)
+          .map((item: GalleriesType, index: number) => (
+            <div
+              key={index}
+              className={`${
+                index === 3
+                  ? "col-span-full h-full w-full"
+                  : "relative w-full aspect-[356/256] cursor-pointer"
+              }`}
+            >
+              <Image
+                src={`${
+                  index === 3 ? "/assets/separator-white.png" : item.src
+                }`}
+                className="w-full"
+                width={349.33}
+                height={349.33}
+                loading="lazy"
+                alt={index === 3 ? "separator" : `image-${index}`}
+              />
+            </div>
+          ))}
       </>
     );
   };
@@ -156,8 +160,9 @@ const Home = () => {
   const renderArticles = () => {
     return (
       <>
-        {articleData.map((item: any, index: any) => (
-          <div
+        {articleData.map((item: ArticleType, index: number) => (
+          <Link
+            href={toArticle(item.slug)}
             key={index}
             className={`flex flex-col ${
               index === 0 ? "md:col-span-2 md:row-span-2" : ""
@@ -166,7 +171,6 @@ const Home = () => {
             <Image
               src={item.featured_image}
               className="h-full w-full grayscale hover:grayscale-0 transition-all cursor-pointer"
-              // layout="fill"
               width={349.33}
               height={349.33}
               loading="lazy"
@@ -177,7 +181,7 @@ const Home = () => {
                 {item.featured_image_caption}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </>
     );
@@ -269,7 +273,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section id="discover-tailored-experiences">
         <div className="max-w-6xl mx-auto flex flex-col justify-center items-center md:items-start h-full px-[30px] md:px-0 my-[72px]">
           <div className="inline-flex flex-col md:flex-row md:items-center justify-center gap-6 h-[346px">
             <Image
@@ -346,9 +350,9 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
+      <section id="articles">
         <div className="max-w-6xl mx-auto flex flex-col items-center md:items-start h-full px-[30px] md:px-0 mt-[54px]">
-          <div className="bg-banner bg-no-repeat relative w-full bg-center bg-cover h-[100px] flex items-center justify-between px-6">
+          <div className="bg-banner bg-no-repeat relative w-full bg-center md:bg-cover h-full md:h-[100px] flex flex-col justify-center items-center md:flex-row md:items-center md:justify-between px-6">
             <div className="absolute inset-0 bg-black opacity-40"></div>
             <Image
               src="/assets/logo-white.png"
@@ -358,16 +362,19 @@ const Home = () => {
               loading="eager"
               alt="dummy11"
             />
-            <div className="text-right z-50">
+            <div className="text-center md:text-right z-50">
               <span className="text-white">
                 Want to see other destinations? Check us out at our website
               </span>
-              <div className="flex items-center justify-end gap-3 z-50">
-                <Link
-                  href="https://pandooin.com/id"
-                  className="font-bold text-white hover:underline cursor-pointer transition-all duration-300"
-                >
-                  pandooin.com
+              <div className="flex items-center justify-center md:justify-end gap-3 z-50">
+                <Link legacyBehavior href="https://pandooin.com/id">
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-bold text-white hover:underline cursor-pointer transition-all duration-300"
+                  >
+                    Pandooin
+                  </a>
                 </Link>
                 <Image
                   src="/assets/arrow.svg"
@@ -381,7 +388,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Articles */}
           <div className="relative z-50 mt-[72px]">
             <h1 className="font-bold text-4xl text-pn-terniary font-unbounded">
               Articles

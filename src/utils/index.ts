@@ -12,3 +12,9 @@ export function toRupiah(amount: number, withSymbol: boolean = false): string {
     ? formattedAmount
     : formattedAmount.replace("Rp", "").trim();
 }
+
+export const toArticle = (slug: string) => {
+  const url = `https://pandooin.com/blog/article/${slug}?utm_source=landing_page&utm_medium=website&utm_campaign=zamrood`;
+
+  return url;
+}
