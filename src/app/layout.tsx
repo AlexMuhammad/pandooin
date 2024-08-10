@@ -38,7 +38,11 @@ export const metadata: Metadata = {
   title: `Zamrood - Pandooin ${new Date().getFullYear()}`,
   description:
     "Online Travel Agent in Indonesia that offers authentic tour packages in nature and the countryside.",
-  icons: [{ rel: "icon", url: "/logo.jpeg" }],
+  icons: [
+    { rel: "apple-touch-icon", url: "icons/icon-128x128.png" },
+    { rel: "icon", url: "icons/icon-128x128.png" },
+  ],
+  manifest: "/manifest.json",
   authors: [{ name: "Alex Muhammad", url: "http://localhost:3000/" }],
   openGraph: {
     title: `Zamrood - Authentic Tour Packages in Indonesia ${new Date().getFullYear()}`,

@@ -1,0 +1,21 @@
+{
+    "name": "Zamrood",
+    "short_name": "zamrood",
+    "description": "Online Travel Agent in Indonesia that offers authentic tour packages in nature and the countryside.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#004040",
+    "theme_color": "#0B7373",
+    "icons": [
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
