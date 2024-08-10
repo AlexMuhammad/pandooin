@@ -5,7 +5,7 @@ import { Alex_Brush, Albert_Sans, Unbounded } from "next/font/google";
 import "@/styles/globals.css";
 import Navbar from "@/components/layouts/navbar";
 import Providers from "@/components/parts/provider";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import Footer from "@/components/layouts/footer";
 
 const theSignature = localFont({
   src: "Thesignature.ttf",
@@ -66,8 +66,8 @@ export default function RootLayout({
           <main className="relative min-h-screen bg-white font-albert-sans">
             <Navbar />
             {children}
+            <Footer />
           </main>
-          <ReactQueryDevtools initialIsOpen={false} />
         </Providers>
       </body>
     </html>
